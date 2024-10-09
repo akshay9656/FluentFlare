@@ -1,0 +1,462 @@
+{% extends "blank_layout.html" %}
+{% load static %}
+{% block content %}
+<style>
+  .edit-icon {
+    color: #007bff;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
+  .form-control {
+    margin-top: 10px;
+  }
+
+  .btn-primary {
+    background-color: #52a7e0;
+    border: none;
+  }
+</style>
+<style>
+  /* Hide the original file input */
+  input[type="file"] {
+    display: none;
+  }
+
+  /* Custom icon button */
+  .custom-upload {
+    margin-top: 10px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10%;
+    padding: 5px;
+    background-color: #52a7e0;
+    color: white;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+  }
+
+  .custom-upload:hover {
+    background-color: #4180b6;
+  }
+
+  /* Pen icon style */
+  .custom-upload i {
+    font-style: normal;
+  }
+</style>
+
+
+
+
+
+{% if show_congrats_modal %}
+<!-- Party Popper Pop-up -->
+<div id="congratsPopup" class="popup-container">
+  <div class="popup-content">
+    <h2>🎉 Congratulations! 🎉</h2>
+    <p>You have successfully completed <br> 40 Days Training Program</p>
+    <div class="party-popper"></div>
+    <button class="col-12 btn btn-primary" onclick="closePopup()">Close</button>
+  </div>
+</div>
+
+<!-- Confetti Explosion -->
+<div id="confettiContainer"></div>
+
+<!-- CSS for Pop-up and Confetti -->
+<style>
+  .popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+
+  .popup-content {
+    background: linear-gradient(135deg, #52a7e0 0%, #FFFFFF 100%);
+    /* Blue to White Gradient */
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    animation: bounceIn 0.8s ease-in-out;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: white;
+  }
+
+  p {
+
+    color: #fff;
+  }
+
+  .party-popper {
+    width: 100px;
+    height: 100px;
+    background: url('/static/images/popper.gif') no-repeat center center;
+    background-size: contain;
+    margin: 20px auto;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.3);
+    }
+
+    50% {
+      transform: scale(1.05);
+    }
+
+    70% {
+      transform: scale(0.9);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Confetti CSS */
+  #confettiContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background-color: #ffce00;
+    opacity: 0.7;
+    transform-origin: left bottom;
+    animation: confetti 2.5s ease-out forwards, sway 2s ease-in-out infinite alternate;
+  }
+
+  .confetti:nth-child(even) {
+    background-color: #ff4081;
+  }
+
+  .confetti:nth-child(odd) {
+    background-color: #52a7e0;
+  }
+
+  @keyframes confetti {
+    0% {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateY(100vh) rotate(720deg);
+    }
+  }
+
+  @keyframes sway {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(15deg);
+    }
+  }
+
+  /* Button styling */
+  .btn-primary {
+    background-color: #52a7e0;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+
+  .btn-primary:hover {
+    background-color: #4180b6;
+  }
+</style>
+
+<!-- JavaScript to handle pop-up and confetti explosion -->
+<script>
+  function closePopup() {
+    var popup = document.getElementById('congratsPopup');
+    var confettiContainer = document.getElementById('confettiContainer');
+    popup.style.display = 'none';
+    confettiContainer.innerHTML = ''; // Stop confetti
+  }
+
+  // Create confetti elements
+  function createConfetti() {
+    var confettiContainer = document.getElementById('confettiContainer');
+    for (var i = 0; i < 200; i++) {
+      var confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.animationDelay = Math.random() * 2 + 's';
+      confettiContainer.appendChild(confetti);
+    }
+  }
+
+  // Start confetti when page loads
+  window.onload = function () {
+    createConfetti();
+  };
+</script>
+{% endif %}
+
+
+
+
+
+
+
+
+<section style="background-color: #f4f5f7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        {% if messages %}
+          {% for message in messages %}
+              {% if message.tags == 'success' %}
+
+                  <div class="alert alert-success" role="alert" style="font-size: x-small;">
+                      <i class="bi bi-check-circle"></i> {{ message }}
+                  </div>
+              {% elif message.tags == 'error' or message.tags == 'danger' %}
+
+                  <div class="alert alert-danger" role="alert" style="font-size: x-small;">
+                      <i class="bi bi-exclamation-triangle"></i> {{ message }}
+                  </div>
+              {% else %}
+                  <div class="alert alert-info" role="alert" style="font-size: x-small;">
+                      <i class="bi bi-info-circle"></i> {{ message }}
+                  </div>
+              {% endif %}
+          {% endfor %}
+      {% endif %}  
+        <div class="card mb-3" style="border-radius: .5rem;">
+              
+          <div class="row g-3">
+
+            <div class="col-md-4 gradient-custom text-center text-white"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; background: linear-gradient(to left, white, #52a7e0);">
+              {% if not user1.profile_pic %}
+              <img src="/static/images/user.png" class="img-fluid mt-5" style="width: 80px;" alt="profile">
+              {% else %}
+              <img src="{{ user1.profile_pic.url }}" alt="profile" class="img-fluid mt-5" style="width: 80px;" />
+              {% endif %}
+              <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- File input with custom icon -->
+                <label for="profile_pic" class="custom-upload">
+                  <i class="bi bi-camera"></i> &nbsp;Change Profile<!-- Unicode for pen symbol -->
+                </label>
+                <input type="file" id="profile_pic" name="profile_pic" accept="image/*"
+                  onchange="showUpdateButton()"><br>
+                <button id="update-profile-btn" class="mt-2 btn btn-primary"
+                  style="display: none; background-color: #52a7e0; border: none;" type="submit">Update Profile</button>
+              </form>
+              <h5 class="fw-bold mt-2 mb-4">{{user1.user_username}}</h5>
+              
+              {% if user1.redeem_code %}
+              <small style="color: black;" ><strong>RedeemCode Used:</strong> {{user1.redeem_code}}</small>
+              {% endif %}
+            </div>
+            <div class="col-md-8">
+              
+              <div class="card-body p-4 mt-4">
+                {% if progress_number.percentage == 0 %}
+                    <small style="color: black;">
+                        <strong>CURRENT LEVEL: </strong> Bronze <img src="{% static 'images/bronze-badge.png' %}" alt="Bronze Icon" style="width: 40px;"/>
+                    </small>
+
+                {% elif progress_number.percentage > 0 and progress_number.percentage <= 25 %}
+                    <small style="color: black;">
+                        <strong>CURRENT LEVEL: </strong> Silver <img src="{% static 'images/silver-badge.png' %}" alt="Silver Icon" style="width: 40px;"/>
+                    </small>
+
+                {% elif progress_number.percentage > 25 and progress_number.percentage <= 50 %}
+                    <small style="color: black;">
+                        <strong>CURRENT LEVEL: </strong> Gold <img src="{% static 'images/gold-badge.png' %}" alt="Gold Icon" style="width: 40px;"/>
+                    </small>
+
+                {% elif progress_number.percentage > 50 and progress_number.percentage <= 80 %}
+                    <small style="color: black;">
+                        <strong>CURRENT LEVEL: </strong> Platinum <img src="{% static 'images/platinum.png' %}" alt="Platinum Icon" style="width: 40px;"/>
+                    </small>
+
+                {% elif progress_number.percentage > 80 %}
+                    <small style="color: black;">
+                        <strong>CURRENT LEVEL: </strong> Diamond <img src="{% static 'images/medal.png' %}" alt="Diamond Icon" style="width: 40px;"/>
+                    </small>
+                {% else %}
+                  <small style="color: black;">
+                    <strong>CURRENT LEVEL: </strong> Bronze <img src="{% static 'images/bronze-badge.png' %}" alt="Bronze Icon" style="width: 40px;"/>
+                  </small>
+                {% endif %}
+                <h6 class="fw-bolder mt-2">Profile Details</h6>
+                <hr class="mt-0 mb-4">
+                <form method="POST" action="{% url 'user_dashboard' %}">
+                  {% csrf_token %}
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h6>Full Name</h6>
+                      <p class="text-muted fw-bold" style="float: left;">{{user1.user_fullname}}</p>
+                      <a href="#" class="edit-icon" onclick="toggleEdit('username')"><i style="color: #52a7e0;"
+                          class="bi bi-pencil-square"></i></a>
+                      <input type="text" id="edit-username" name="user_username" class="form-control d-none"
+                        value="{{user1.user_fullname}}">
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h6>Language</h6>
+                      <p class="text-muted fw-bold" style="float: left;">{{user1.user_language}}</p>
+                     
+                    </div>
+                    
+                    <div class="col-12 mb-3">
+                      <h6>Email</h6>
+                      <p class="text-muted fw-bold" style="float: left;">{{user1.user_email}}</p>
+                      <a href="#" class="edit-icon" onclick="toggleEdit('email')"><i style="color: #52a7e0;"
+                          class="bi bi-pencil-square"></i></a>
+                      <input type="email" id="edit-email" name="user_email" class="form-control d-none"
+                        value="{{user1.user_email}}">
+                    </div>
+
+
+                  </div>
+                  <button type="submit" name="detail-submit" class="btn btn-primary d-none" id="save-btn">Update
+                    Details</button>
+                </form>
+                <div class="col-12 mb-3">
+                  <button class="btn btn-sm btn-outline-secondary w-100" data-bs-toggle="modal"
+                  data-bs-target="#changePasswordModal">Change Password</button>
+                </div>
+
+                <!-- Password Change Modal -->
+                <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="changePasswordModalLabel">Change Password
+                              </h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <form method="POST" action="">
+                                  {% csrf_token %}
+                                  <div class="form-group">
+                                      <label for="old_password">Old Password:</label>
+                                      <input type="password" id="old_password" name="old_password"
+                                          class="form-control" required>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="new_password1">New Password:</label>
+                                      <input type="password" id="new_password1" name="new_password1"
+                                          class="form-control" required>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="new_password2">Confirm New Password:</label>
+                                      <input type="password" id="new_password2" name="new_password2"
+                                          class="form-control" required>
+                                  </div>
+                                  <button type="submit" name="changepassworduser" class="btn btn-secondary mt-2 w-100">Change
+                                      Password
+                                  </button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+                <p><span class="text-dark">Course Status: </span>{% if user1.enrolled %}<span
+                    class="text-success fw-bold">Enrolled</span>{% else %} <span class="text-danger fw-bold">not
+                    paid or payment pending</span> {% endif %}</p>
+                <h6 class="fw-bolder">Your Progress 👇</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  
+                  <div class="col-12 mb-3">
+                      
+                    <div class="progress" style="padding: 0%;" role="progressbar" aria-label="Animated striped example"
+                      aria-valuenow="{% if progress_number.percentage > 0 %}{{ progress_number.percentage }}{% else %}0{% endif %}">
+                      <div class="progress-bar progress-bar-striped progress-bar-animated"
+                        style="width: {% if progress_number.percentage > 0 %}{{ progress_number.percentage }}{% else %}0{% endif %}%">
+                        {% if progress_number.percentage > 0 %}
+                        {{ progress_number.percentage }} %
+                        {% else %}
+                        0 %
+                        {% endif %}
+                      </div>
+                    </div>
+                    {% if progress_number.percentage > 0%}
+                    <p class="mt-2 fw-light" style="font-size: x-small;">Last Updated: {{progress_number.updated_time}}
+                    </p>
+                    {% else %}
+                    <p class="mt-2 fs-6">The course hasn't been started yet.</p>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  function toggleEdit(field) {
+    var input = document.getElementById('edit-' + field);
+    var saveBtn = document.getElementById('save-btn');
+    input.classList.toggle('d-none');
+    saveBtn.classList.remove('d-none');
+  }
+  function showUpdateButton() {
+    var fileInput = document.getElementById('profile_pic');
+    var updateButton = document.getElementById('update-profile-btn');
+
+    if (fileInput.value) {
+      updateButton.style.display = 'block';
+    } else {
+      updateButton.style.display = 'none';
+    }
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% load static %}
+{% block header %}
+
+<header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+        <a href="{% url 'index' %}" class="logo d-flex align-items-center me-auto">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <img src="{% static 'images/logo1.png' %}" style="margin-right: 2px;" alt="fluentsyspeak">
+            <h1 class="sitename" style="margin-right: 2px;">FluentsySpeak</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                {% if user.is_authenticated %}
+                    {% with user.userregister as user_info %}
+                        <li>
+                            {% if user_info.enrolled %}
+                                <a href="{% url 'UserHome' %}" class="active">User's Home<br></a>
+                            {% else %}
+                                <a href="{% url 'index' %}">Home</a>
+                            {% endif %}
+                        </li>
+                    {% endwith %}
+                {% endif %}
+                <li><a href="{% url 'user_dashboard' %}">Dashboard</a></li>
+                {% if user.is_authenticated %}
+                    {% with user.userregister as user_info %}
+                        {% if user_info.enrolled %}
+                            <li><a href="{% url 'GrammerPage' %}">Grammer Class</a></li>
+                            <li><a href="{% url 'FirstTask' %}">Continue Course</a></li>
+                        {% endif %}
+                    {% endwith %}
+                {% endif %}
+                <li class="dropdown"><a><span>Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Homepage</a></li>
+                        <li><a href="{% url 'UserHome' %}#services">Services</a></li>
+                        <li><a href="{% url 'UserHome' %}#features">features</a></li>
+                        <li><a href="{% url 'UserHome' %}#faq">FAQ</a></li>
+                        <li><a href="{% url 'contactUs' %}">Contact Us</a></li>
+                    </ul>
+                </li>
+                
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+
+        
+        {% if user.is_authenticated %}
+        <a class="btn-getstarted" href="{% url 'signOut' %}">LogOut</a>
+        {% else %}
+        <style>
+            .desktop-text {
+                display: none; /* Hide desktop text by default */
+            }
+
+            .mobile-text {
+                display: inline; /* Show mobile text by default */
+            }
+
+            @media (min-width: 768px) {
+                .desktop-text {
+                    display: inline; /* Show desktop text on larger screens */
+                }
+                
+                .mobile-text {
+                    display: none; /* Hide mobile text on larger screens */
+                }
+            }
+        </style>
+        <a class="btn-getstarted" href="{% url 'register' %}">
+            <span class="desktop-text">Join now</span>
+            <span class="mobile-text">Join</span>
+        </a>
+        {% endif %}
+
+    </div>
+</header>
+
+{% endblock header %}

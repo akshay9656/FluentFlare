@@ -1,0 +1,412 @@
+{% extends "blank_layout.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Hero Section -->
+
+<section id="hero" class="hero section"
+    style="background: url('/static/images/download (1).jpeg'); background-size: cover; background-position: center;">
+
+    
+    <div class="container">
+        {% if messages %}
+                                
+    {% for message in messages %}
+        <div class="alert alert-success " role="alert" style="font-size: x-small;">
+            <i class="bi bi-bell"></i> {{ message }}
+        </div>
+        
+    {% endfor %}
+        
+    {% endif %}
+        <div class="row gy-4 justify-content-center">
+            
+            <div class="col-10 order-1 order-lg-2 hero-img ">
+                <h2><b>Welcome To Fluentsy Speak, best place to improve your English.</b></h2>
+                <h5 class="fw-bolder">Challenges You Need To Face:</h5>
+                <ul>
+                    <li><span class="fw-bolder">Get Ready:</span> Have an English reading book in hand.</li>
+                    <li><span class="fw-bolder">AI Feedback:</span> You will get AI Feedback After completing every 10 tasks </li>
+                    <li><span class="fw-bolder">Record Your Voice:</span> Be prepared to record your daily readings and thoughts.</li>
+                    <li><span class="fw-bolder">Watch Daily:</span> Make it a habit to watch movies daily.</li>
+                    <li><span class="fw-bolder">Listen Actively:</span> Tune into podcasts regularly.</li>
+                    <li><span class="fw-bolder">Practice Grammar:</span> Be ready to improve with daily grammar exercises.</li>
+                    <li><span class="fw-bolder">Community:</span> After completing 20 Task you will get link to join Telegram Group Community.</li>
+                    <!-- <li><span class="fw-bolder">Daily Speaking Practice:</span> Record yourself speaking on daily topics And by reading books.</li>
+                    <li><span class="fw-bolder">Personalized Feedback:</span> Get AI-driven feedback on your recordings after completing every 10 tasks.</li>
+                    <li><span class="fw-bolder">Grammar Challenges:</span> Improve grammar with daily fill-in-the-blank quizzes.</li>
+                    <li><span class="fw-bolder">Vocabulary Building:</span> Search and learn new word meanings.</li>
+                    <li><span class="fw-bolder">40-day Training Program:</span> Complete daily tasks in a 40-day course.</li>
+                    <li><span class="fw-bolder">Progress Tracking:</span> Track your progress with a visual progress bar.</li>
+                    <li><span class="fw-bolder">Watch & Listen:</span> Enhance your skills by watching movies and listening to podcasts.</li> -->
+                </ul>
+                <div class="d-flex justify-content-center mt-5">
+                    {% if courseredirect.clicked %}
+                    <a href="{% url 'FirstTask' %}" style="border: 2px solid rgb(0, 0, 0); color: rgb(0, 0, 0);"
+                        class="btn-get-started">Continue To Course</a>
+                    
+                    {% else %}
+                    <a href="{% url 'GrammerPage' %}" style="border: 2px solid rgb(0, 0, 0); color: rgb(0, 0, 0);"
+                        class="btn-get-started">Go To Course</a>
+                    
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section><!-- /Hero Section -->
+
+<!-- Alt Services Section -->
+<section id="alt-services" class="alt-services section">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="service-item position-relative">
+                    <div class="img">
+                        <img src="{% static 'images/AI teacher.jpeg' %}" class="img-fluid" alt="">
+                    </div>
+                    <div class="details opacity-75">
+                        <a class="stretched-link">
+                            <h3>AI Mentor</h3>
+                        </a>
+                        <p>Hello! I’m your AI English mentor. Live record your english speech, and I’ll
+                            help you to improve your pronunciation, fluency, grammar, and vocabulary. Let’s become
+                            confident English speakers together!</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section><!-- /Alt Services Section -->
+
+<!-- Services Section -->
+<section id="services" class="services section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>We Offer You Different Services To Enhance Your English Speaking Pottential</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row gy-4 justify-content-center">
+
+            <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item position-relative">
+                    <i class="bi bi-people-fill"></i>
+                    <h4><a href="" class="stretched-link">One-on-One Mentorship</a></h4>
+                    <p>Personalized mentoring sessions with AI teacher or human experts.</p>
+                </div>
+
+            </div><!-- End Service Item -->
+
+            <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-item position-relative">
+                    <i class="bi bi-megaphone"></i>
+                    <h4><a href="" class="stretched-link">Speaking Practice Sessions</a></h4>
+                    <p>Interactive speaking practice sessions with real-time feedback.</p>
+                </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-item position-relative">
+                    <i class="bi bi-whatsapp"></i>
+                    <h4><a href="" class="stretched-link">Community Support</a></h4>
+                    <p>Opportunities to connect with other learners and share experiences.</p>
+                </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-item position-relative">
+                    <i class="bi bi-rocket-takeoff"></i>
+                    <h4><a href="" class="stretched-link">Grammar Enhancement</a></h4>
+                    <p>Targeted exercises to improve grammar and expand vocabulary.</p>
+                </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-item position-relative">
+                    <i class="bi bi-mortarboard"></i>
+                    <h4><a href="" class="stretched-link">Pronunciation Coaching</a></h4>
+                    <p>Specialized sessions focused on improving pronunciation and accent reduction.</p>
+                </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-item position-relative">
+                    <i class="bi bi-wechat"></i>
+                    <h4><a href="" class="stretched-link">Fluency Development</a></h4>
+                    <p>exercises and techniques to improve speech fluency.</p>
+                </div>
+            </div><!-- End Service Item -->
+
+        </div>
+
+    </div>
+
+</section><!-- /Services Section -->
+
+<!-- Features Section -->
+<section id="features" class="features section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Features</h2>
+        <p>FluentsySpeak Provide You Different Features</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row gy-4">
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="features-item">
+                    <i class="bi bi-eye" style="color: #ffbb2c;"></i>
+                    <h3><a href="" class="stretched-link">AI Teacher</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="features-item">
+                    <i class="bi bi-infinity" style="color: #5578ff;"></i>
+                    <h3><a href="" class="stretched-link">Audio Upload Interface</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="features-item">
+                    <i class="bi bi-mortarboard" style="color: #e80368;"></i>
+                    <h3><a href="" class="stretched-link">Real-time Feedback</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="features-item">
+                    <i class="bi bi-nut" style="color: #e361ff;"></i>
+                    <h3><a href="" class="stretched-link">Progress Tracking</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="features-item">
+                    <i class="bi bi-shuffle" style="color: #47aeff;"></i>
+                    <h3><a href="" class="stretched-link">Interactive Exercises</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="features-item">
+                    <i class="bi bi-star" style="color: #ffa76e;"></i>
+                    <h3><a href="" class="stretched-link">Community Forum</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="700">
+                <div class="features-item">
+                    <i class="bi bi-x-diamond" style="color: #11dbcf;"></i>
+                    <h3><a href="" class="stretched-link">Resource Library</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="800">
+                <div class="features-item">
+                    <i class="bi bi-chat-dots" style="color: #4233ff;"></i>
+
+                    <h3><a href="" class="stretched-link">Live Chat Support</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="900">
+                <div class="features-item">
+                    <i class="bi bi-command" style="color: #b2904f;"></i>
+                    <h3><a href="" class="stretched-link">User Dashboard</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1000">
+                <div class="features-item">
+                    <i class="bi bi-dribbble" style="color: #b20969;"></i>
+                    <h3><a href="" class="stretched-link">Privacy and Security</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1100">
+                <div class="features-item">
+                    <i class="bi bi-activity" style="color: #ff5828;"></i>
+                    <h3><a href="" class="stretched-link">Genuine Reviews</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+            <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1200">
+                <div class="features-item">
+                    <i class="bi bi-phone" style="color: #29cc61;"></i>
+
+                    <h3><a href="" class="stretched-link">Simple Interface</a></h3>
+                </div>
+            </div><!-- End Feature Item -->
+
+        </div>
+
+    </div>
+
+</section><!-- /Features Section -->
+
+<!-- Faq Section -->
+<section id="faq" class="faq section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>FAQ</h2>
+        <p>Everything You Need to Know: Common Questions and Detailed Answers</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row faq-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-5 d-flex">
+                <i class="bi bi-question-circle"></i>
+                <h4>What is the 40-day training program, and how does it work?</h4>
+            </div>
+            <div class="col-lg-7">
+                <p>
+                    The 40-day training program is designed to improve your English speaking skills through
+                    daily tasks. Each day, you'll be assigned tasks such as reading, recording audio, writing
+                    reviews, and grammar tests. Your progress will be tracked, and you'll receive feedback from
+                    AI to help you improve.
+                </p>
+            </div>
+        </div><!-- End F.A.Q Item-->
+
+        <div class="row faq-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-lg-5 d-flex">
+                <i class="bi bi-question-circle"></i>
+                <h4>How are the audio recordings reviewed, and what kind of feedback will I receive?</h4>
+            </div>
+            <div class="col-lg-7">
+                <p>
+                    When you upload an audio recording, it will be reviewed by an AI, which will provide
+                    feedback on your pronunciation, fluency, and grammar. The feedback will help you understand
+                    your strengths and areas for improvement.
+                </p>
+            </div>
+        </div><!-- End F.A.Q Item-->
+
+        <div class="row faq-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-lg-5 d-flex">
+                <i class="bi bi-question-circle"></i>
+                <h4>Can I pause or skip days in the 40-day training program?</h4>
+            </div>
+            <div class="col-lg-7">
+                <p>
+                    The program is designed to be completed over 40 consecutive days to ensure steady progress.
+                    However, if you need to skip a day or take a break, you can resume where you left off. Just
+                    keep in mind that this may affect your overall progress and feedback.
+                </p>
+            </div>
+        </div><!-- End F.A.Q Item-->
+
+        <div class="row faq-item" data-aos="fade-up" data-aos-delay="400">
+            <div class="col-lg-5 d-flex">
+                <i class="bi bi-question-circle"></i>
+                <h4>How can I track my progress throughout the 40-day program?</h4>
+            </div>
+            <div class="col-lg-7">
+                <p>
+                    Your progress is tracked through a progress bar that shows your completion of daily tasks
+                    over the 40-day period. You can view your progress on the "Dashboard" page, where you'll see
+                    how many tasks you've completed and how much of the program you've finished.
+                </p>
+            </div>
+        </div><!-- End F.A.Q Item-->
+
+        <div class="row faq-item" data-aos="fade-up" data-aos-delay="500">
+            <div class="col-lg-5 d-flex">
+                <i class="bi bi-question-circle"></i>
+                <h4>Is there a way to contact support if I have technical issues or questions?</h4>
+            </div>
+            <div class="col-lg-7">
+                <p>
+                    Yes, if you have any technical issues or questions, you can contact our support team through
+                    the "Contact Us" page. Provide as much detail as possible about your issue, and our team
+                    will assist you in resolving it.
+                </p>
+            </div>
+        </div><!-- End F.A.Q Item-->
+
+    </div>
+
+</section><!-- /Faq Section -->
+
+<!-- About Section -->
+<section id="about" class="about section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>About Us</h2>
+        <p>Learn More About Us: Our Commitment to Improving Your English Proficiency</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row justify-content-center gy-5">
+            <div class="col-11">
+
+                <div class="content col-12 d-flex flex-column" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Empowering Your English Journey</h3>
+                    <p>
+                        Welcome to FluentsySpeak, where our mission is to help you master English speaking skills
+                        through engaging and personalized practice. We understand that learning a new language
+                        can be challenging, especially when it comes to speaking confidently. That's why we've
+                        designed a unique 40-day training program to guide you through daily tasks, including
+                        reading exercises, audio recordings, and grammar tests.
+                    </p>
+
+                </div>
+
+                <div class="col-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row gy-4">
+
+                        <div class="col-md-6 icon-box position-relative">
+                            <i class="bi bi-person-walking"></i>
+                            <h4><a class="stretched-link">Our Approach</a></h4>
+                            <p>We combine the latest in language learning technology with a user-friendly
+                                interface to create a learning experience that is both effective and motivating.
+                            </p>
+                        </div><!-- Icon-Box -->
+
+                        <div class="col-md-6 icon-box position-relative">
+                            <i class="bi bi-gem"></i>
+                            <h4><a class="stretched-link">Our Vision</a></h4>
+                            <p>Our vision is to provide an innovative and supportive platform that makes
+                                learning English both effective and enjoyable.
+                            </p>
+                        </div><!-- Icon-Box -->
+
+                        <div class="col-md-6 icon-box position-relative">
+                            <i class="bi bi-person-add"></i>
+                            <h4><a class="stretched-link">Join Us</a></h4>
+                            <p>Whether you're looking to improve your English for personal growth, academic
+                                purposes, or professional development, FluentsySpeak is here to support you every
+                                step of the way.</p>
+                        </div><!-- Icon-Box -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section><!-- /About Section -->
+
+{% endblock %}

@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+
+    <title>FluentsySpeak | Admin Page</title>
+    <link rel="icon" href="{% static 'images/logo1.png' %}" type="image/png">
+
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<style>
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        /* Smooth scrolling on iOS */
+        border: 1px solid #ddd;
+        /* Optional border */
+    }
+
+    table {
+        min-width: 1000px;
+        /* Adjust based on your content */
+    }
+
+    th,
+    td {
+        text-align: center;
+    }
+</style>
+
+<body>
+
+
+    <div id="main-wrapper">
+
+
+
+
+        <div class="page-wrapper mt-5">
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-3">
+                        <a href="{% url 'myadminpage' %}">
+                            <div class="card card-hover">
+                                <div class="box bg-cyan text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="mdi mdi-view-dashboard"></i>
+                                    </h1>
+                                    <h6 class="text-white">Dashboard</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-3">
+                        <a href="{% url 'addtask' %}">
+
+                            <div class="card card-hover">
+                                <div class="box bg-success text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="mdi mdi-chart-areaspline"></i>
+                                    </h1>
+                                    <h6 class="text-white">Add Task And View Tasks</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-3">
+                        <a href="{% url 'changegrouplink' %}">
+
+                            <div class="card card-hover">
+                                <div class="box bg-warning text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="mdi mdi-collage"></i>
+                                    </h1>
+                                    <h6 class="text-white">Change Payment</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-3">
+                        <a href="{% url 'myadminpage' %}">
+
+                            <div class="card card-hover">
+                                <div class="box bg-danger text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="mdi mdi-border-outside"></i>
+                                    </h1>
+                                    <h6 class="text-white">Change Group Link</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+                <div class="row">
+
+
+                    <div class="table-wrapper">
+                        <h1 class="row justify-content-center ">New Messages</h1>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Message</th>
+                                    <th>Message Recieved Time</th>
+                                    <th>Set As Replied</th>
+                                    
+                          
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for d in newmessage %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+
+                                    <td>{{d.name}}</td>
+
+
+                                    <td>{{d.email}}</td>
+
+                                    <td>{{d.message}}</td>
+
+                                    <td>{{d.message_recieved}}</td>
+
+                                    <td><a href="{% url 'changemessagestatus' d.id %}">replied</a></td>
+
+                                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+            <footer class="footer text-center">
+                All Rights Reserved by Fluentsyspeak.in, Designed and Developed by
+                <span class="fw-bolder" style="color: #52a7e0;">AKSHAY KRISHNA</span>.
+            </footer>
+
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+    <script src="{% static 'js/custom.min.js' %}"></script>
+
+    <script src="{% static 'js/sidebarmenu.js' %}"></script>
+
+
+
+</body>
+
+</html>

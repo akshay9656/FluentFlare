@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+
+    <title>FluentsySpeak | Admin Page</title>
+    <link rel="icon" href="{% static 'images/logo1.png' %}" type="image/png">
+
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<style>
+    .message {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+
+    .message.success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .message.warning {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .message.info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        /* Smooth scrolling on iOS */
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+        max-width: 100%;
+    }
+
+    table {
+        min-width: 1000px;
+        /* Adjust based on your content */
+    }
+
+    th,
+    td {
+        text-align: center;
+        white-space: nowrap;
+        /* Prevent text wrapping */
+    }
+</style>
+
+<body>
+    <div id="main-wrapper">
+        <div class="page-wrapper mt-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-3">
+                        <a href="{% url 'myadminpage' %}">
+                            <div class="card card-hover">
+                                <div class="box bg-cyan text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="mdi mdi-view-dashboard"></i>
+                                    </h1>
+                                    <h6 class="text-white">Dashboard</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-3">
+                        <a href="{% url 'addtask' %}">
+                            <div class="card card-hover">
+                                <div class="box bg-success text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="mdi mdi-chart-areaspline"></i>
+                                    </h1>
+                                    <h6 class="text-white">Add Task And View Tasks</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-3">
+                        <a href="{% url 'changegrouplink' %}">
+                            <div class="card card-hover">
+                                <div class="box bg-warning text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="mdi mdi-collage"></i>
+                                    </h1>
+                                    <h6 class="text-white">Change Payment</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-3">
+                        <a href="{% url 'myadminpage' %}">
+                            <div class="card card-hover">
+                                <div class="box bg-danger text-center">
+                                    <h1 class="font-light text-white">
+                                        <i class="mdi mdi-border-outside"></i>
+                                    </h1>
+                                    <h6 class="text-white">Change Group Link</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="table-wrapper">
+                        <h1 class="row justify-content-center">All Registered Users</h1>
+                        {% if messages %}
+                        <div>
+                            {% for message in messages %}
+                                <div class="message {{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <form method="GET" action="{% url 'allusers' %}">
+                            <table class="table table-striped table-bordered">
+                                <button type="submit" class=" btn btn-primary w-100">Search</button>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Username</th>
+                                        <th>Redeem Code</th>
+                                        <th>Password</th>
+                                        <th>Profile Picture</th>
+                                        <th>Enrolled or Not</th>
+                                        <th>whatsapp Enabled?</th>
+                                        <th>Join Date</th>
+                                        <th>change User status</th>
+                                        <th>Delete User</th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th><input type="text" name="fullname" placeholder="Search Full Name" value="{{ request.GET.fullname }}"></th>
+                                        <th><input type="text" name="email" placeholder="Search Email" value="{{ request.GET.email }}"></th>
+                                        <th><input type="text" name="username" placeholder="Search Username" value="{{ request.GET.username }}"></th>
+                                        <th><input type="text" name="redeem_code" placeholder="Search Redeem Code" value="{{ request.GET.redeem_code }}"></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in AllUsers %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{user.user_fullname}}</td>
+                                        <td>{{user.user_email}}</td>
+                                        <td>{{user.user_username}}</td>
+                                        <td>{% if user.redeem_code %} {{user.redeem_code}} {% else %} No redeem code {% endif %}</td>
+                                        <td>{{user.user_password}}</td>
+                                        <td>
+                                            {% if user.profile_pic %}
+                                            <img style="height: 50px;" src="{{ user.profile_pic.url }}" alt="Profile Picture">
+                                            {% else %}
+                                            <img style="height: 50px;" src="/static/images/user.png" alt="Default Profile Picture">
+                                            {% endif %}
+                                        </td>
+                                        <td>{{user.enrolled}}</td>
+                                        <td>{{user.whatsapp}}</td>
+                                        <td>{{user.join_date}}</td>
+                                        <td>
+                                            <a style="text-decoration: none; border: 1px solid black; padding: 5px;" href="{% url 'toggle_admin_status' user.user.id %}">make as admin/normal user</a> 
+                                            <br> <br>
+                                            {% if user.user.is_staff %}
+                                                (Admin)
+                                            {% elif user.user.userType == 'promoter' %}
+                                                (Promoter)
+                                            {% else %}
+                                                (Regular User)
+                                            {% endif %}
+                                            <br> <br>
+                                            
+                                            <a style="text-decoration: none; border: 1px solid black; padding: 5px;" href="{% url 'toggle_promoter_status' user.user.id %}">make as Promoter/user</a>
+                                            
+                                        </td>
+                                        <td>
+                                            <a style="text-decoration: none; color: red; border: 1px solid black; padding: 5px;" href="{% url 'delete_user' user.user.id %}" onclick="return confirm('Are you sure you want to permanently delete {{user.user_username}} user?');">
+                                                Delete User
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer text-center">
+                All Rights Reserved by Fluentsyspeak.in, Designed and Developed by
+                <span class="fw-bolder" style="color: #52a7e0;">AKSHAY KRISHNA</span>.
+            </footer>
+
+        </div>
+    </div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/sidebarmenu.js' %}"></script>
+</body>
+</html>

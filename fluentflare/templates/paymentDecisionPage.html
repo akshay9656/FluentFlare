@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>FluentsySpeak</title>
+    <link rel="icon" href="{% static 'images/logo1.png' %}" type="image/png">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'css/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/swiper-bundle.min.css' %}" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        
+        
+
+        .emoji-button:hover {
+            background-color: #0056b3;
+        }
+
+        .emoji-popup {
+            position: absolute;
+            display: none;
+            animation: fly-in 3.5s ease-in-out;
+        }
+
+        .emoji-button:hover .emoji-popup {
+            display: block;
+            animation: fly-in 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fly-in {
+            0% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-20px);
+            }
+            75% {
+                opacity: 1;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+        }
+    </style>
+</head>
+
+<body class="index-page">
+
+
+
+    <main class="main">
+        <header id="header" class="header d-flex align-items-center sticky-top">
+            <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+                <a href="{% url 'index' %}" class="logo d-flex align-items-center me-auto">
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <img src="{% static 'images/logo1.png' %}" style="margin-right: 2px;" alt="fluentsyspeak">
+                    <h1 class="sitename">FluentsySpeak</h1>
+                </a>
+
+                <nav id="navmenu" class="navmenu">
+                    
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
+
+                
+
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero section" style="padding-top: 10px; padding-bottom: 0px;">
+
+            <div class="container">
+                {% if messages %}
+                                
+                {% for message in messages %}
+                    <div class="alert alert-success " role="alert" style="font-size: small;">
+                        <i class="bi bi-bell"></i> {{ message }}
+                    </div>
+                    
+                {% endfor %}
+                    
+                {% endif %}
+                <div class="row justify-content-center">
+                    <div class="col-12 col-sm-5 mb-3 mb-sm-0">
+                        <div class="card">
+                            <img src="{% static 'images/paymetpagelogo.png' %}" class="card-img-top" alt="Success Is On way">
+                            <div class="card-body">
+                                <h3 class="card-title text-center"><b>Enroll Your Course Now</b></h3>
+                                <p class="card-text text-center">
+                                    Enroll now and start thriving tomorrow! <br> 
+                                    Only @
+                                    {% if discounted_price %}
+                                        <span class="text-success">{{ discounted_price }}/-</span>
+                                        <span style="text-decoration: line-through; color: red;">{{ price }}/-</span>
+                                        20% off
+                                    {% else %}
+                                        {{ price }}/-
+                                    {% endif %}
+                                </p>
+                                <a href="{% url 'paymentpage' %}" class="col-12 btn btn-primary emoji-button" style="border-radius: 25px; background-color: #52a7e0;">Pay Now <span class="emoji-popup">💕</span> </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-5">
+                        <div class="card">
+                            <img src="{% static 'images/homepagelogo.png' %}" class="card-img-top" alt="Don't Do This">
+                            <div class="card-body">
+                                <h3 class="card-title text-center"><b>I will Join Later</b></h3>
+                                <p class="card-text text-center">Join later and stay in touch for updates! 👋👋</p>
+                                <a href="{% url 'index' %}" class="col-12 btn btn-primary emoji-button" style="border-radius: 25px; background-color: #52a7e0;">Go To Homepage 
+                                    
+                                    <span class="emoji-popup">😓</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section><!-- /Hero Section -->
+
+
+        <footer id="footer" class="footer">
+
+            <div class="container">
+                <div class="copyright text-center ">
+                    <p>© <span id="currentYear"></span> <span>Copyright</span> <strong class="px-1 sitename">FluentsySpeak</strong> <span>All Rights
+                            Reserved</span></p>
+                </div>
+                <div class="mt-3 d-flex justify-content-center">
+
+                    <a href="{% url 'privacypolicy' %}">privacy policy</a> &nbsp;|&nbsp;
+                    <a href="{% url 'termsofservice' %}">terms of service</a> &nbsp;|&nbsp;
+                    <a href="{% url 'contactUs' %}">contact us</a>
+
+                </div>
+
+            </div>
+            <script>
+                // JavaScript to set the current year in the footer
+                document.getElementById('currentYear').textContent = new Date().getFullYear();
+            </script>
+        </footer>
+    </main>
+
+
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/validate.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script src="{% static 'js/glightbox.min.js' %}"></script>
+    <script src="{% static 'js/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+
+    <!-- Main JS File -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

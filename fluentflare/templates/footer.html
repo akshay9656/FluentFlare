@@ -1,0 +1,26 @@
+{% load static %}
+{% block footer %}
+
+<footer id="footer" class="footer">
+
+    <div class="container">
+        <div class="copyright text-center ">
+            <p>© <span id="currentYear"></span> <span>Copyright</span> <strong class="px-1 sitename">FluentsySpeak</strong> <span>All Rights
+                    Reserved</span></p>
+        </div>
+        <div class="mt-3 d-flex justify-content-center">
+
+            <a href="{% url 'privacypolicy' %}">privacy policy</a> &nbsp;|&nbsp;
+            <a href="{% url 'termsofservice' %}">terms of service</a> &nbsp;|&nbsp;
+            <a href="{% url 'contactUs' %}">contact us</a>
+
+        </div>
+
+    </div>
+    <script>
+        // JavaScript to set the current year in the footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>   
+</footer>
+
+{% endblock %}

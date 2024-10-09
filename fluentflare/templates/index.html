@@ -1,0 +1,709 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>FluentsySpeak</title>
+    <link rel="icon" href="{% static 'images/logo1.png' %}" type="image/png">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'css/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/swiper-bundle.min.css' %}" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="index-page">
+
+
+
+    <main class="main">
+        <header id="header" class="header d-flex align-items-center sticky-top">
+            <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+                <a href="{% url 'index' %}" class="logo d-flex align-items-center me-auto">
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <img src="{% static 'images/logo1.png' %}" style="margin-right: 2px;" alt="fluentsyspeak">
+                    <h1 class="sitename">FluentsySpeak</h1>
+                </a>
+
+                <nav id="navmenu" class="navmenu">
+                    <ul>
+                        <li><a href="#hero" class="active">Home<br></a></li>
+                        {% if not userhomebutton.enrolled %}
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#testimonials">Reviews</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'user_dashboard' %}">Dashboard</a></li>
+                        {% endif %}
+                        {% if userhomebutton.enrolled %}
+                        <li><a href="{% url 'UserHome' %}">User's Homepage</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'contactUs' %}">Contact Us</a></li>
+
+
+
+                    </ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
+                {% if user.is_authenticated %}
+                <a class="btn-getstarted" href="{% url 'signOut' %}">LogOut</a>
+                {% else %}
+                <style>
+                    .desktop-text {
+                        display: none; /* Hide desktop text by default */
+                    }
+
+                    .mobile-text {
+                        display: inline; /* Show mobile text by default */
+                    }
+
+                    @media (min-width: 768px) {
+                        .desktop-text {
+                            display: inline; /* Show desktop text on larger screens */
+                        }
+                        
+                        .mobile-text {
+                            display: none; /* Hide mobile text on larger screens */
+                        }
+                    }
+                </style>
+                <a class="btn-getstarted" href="{% url 'login' %}">
+                    <span class="desktop-text">Login now</span>
+                    <span class="mobile-text">Login</span>
+                </a>
+                
+                {% endif %}
+
+
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero section mt-0 pt-2">
+
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                        <h2 class="ms-3 "><b>Transform your words into confidence, Speak English Fluently.</b></h2>
+                        <p class="ms-3 me-3">Let our AI Mentor guide you to fluency—the smart and affordable path to
+                            mastering English
+                            speaking. <br> <span style="color: #52a7e0; font-size: small;"> Complete 20 Tasks to unlock Telegram Group Community.</span>
+                        </p>
+                        
+                        <div class="d-flex">
+                            {% if user.is_authenticated %}
+                            {% if userhomebutton.enrolled %}
+                            <a class="btn-get-started ms-3" href="{% url 'UserHome' %}">User's Homepage</a>
+                            {% else %}
+                            <a class="btn-get-started ms-3" href="{% url 'paymentDecisionPage' %}">Pay And Enroll Course</a>
+                            {% endif %}
+
+                            {% else %}
+                            <a class="btn-get-started ms-3" href="{% url 'register' %}">Create New Account</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2 hero-img">
+                        <img src="{% static 'images/Premium Vector _ Children talking at school.jpeg' %}"
+                            class="img-fluid animated" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </section><!-- /Hero Section -->
+
+        <!-- Alt Services Section -->
+        <section id="alt-services" class="alt-services section">
+
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="service-item position-relative">
+                            <div class="img">
+                                <img src="{% static 'images/AI teacher.jpeg' %}" class="img-fluid" alt="">
+                            </div>
+                            <div class="details opacity-75">
+                                <a class="stretched-link">
+                                    <h3>AI Mentor</h3>
+                                </a>
+                                <p>Hello! I’m your AI English mentor. Live record your english speech, and I’ll
+                                    help you to improve your pronunciation, fluency, grammar, and vocabulary. Let’s become
+                                    confident English speakers together!</p>
+                            </div>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                </div>
+
+            </div>
+
+        </section><!-- /Alt Services Section -->
+
+        <!-- Services Section -->
+        <section id="services" class="services section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Services</h2>
+                <p>We Offer You Different Services To Enhance Your English Speaking Pottential</p>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+
+                <div class="row gy-4 justify-content-center">
+
+                    <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-item position-relative">
+                            <i class="bi bi-people-fill"></i>
+                            <h4><a class="stretched-link">One-on-One Mentorship</a></h4>
+                            <p>Personalized mentoring sessions with AI teacher or human experts.</p>
+
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-item position-relative">
+                            <i class="bi bi-megaphone"></i>
+                            <h4><a class="stretched-link">Speaking Practice Sessions</a></h4>
+                            <p>Interactive speaking practice sessions with real-time feedback.</p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-item position-relative">
+                            <i class="bi bi-whatsapp"></i>
+                            <h4><a class="stretched-link">Community Support</a></h4>
+                            <p>Opportunities to connect with other learners and share experiences.</p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+                        <div class="service-item position-relative">
+                            <i class="bi bi-rocket-takeoff"></i>
+                            <h4><a class="stretched-link">Grammar Enhancement</a></h4>
+                            <p>Targeted exercises to improve grammar and expand vocabulary.</p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+                        <div class="service-item position-relative">
+                            <i class="bi bi-mortarboard"></i>
+                            <h4><a class="stretched-link">Pronunciation Coaching</a></h4>
+                            <p>Specialized sessions focused on improving pronunciation and accent reduction.</p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-6 col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+                        <div class="service-item position-relative">
+                            <i class="bi bi-wechat"></i>
+                            <h4><a class="stretched-link">Fluency Development</a></h4>
+                            <p>exercise and techniques to improve speech fluency.</p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                </div>
+
+            </div>
+
+        </section><!-- /Services Section -->
+
+
+
+        <!-- Features Section -->
+        <section id="features" class="features section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Features</h2>
+                <p>FluentsySpeak Provide You Different Features</p>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+
+                <div class="row gy-4">
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="features-item">
+                            <i class="bi bi-eye" style="color: #ffbb2c;"></i>
+                            <h3><a class="stretched-link">AI Teacher</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="features-item">
+                            <i class="bi bi-infinity" style="color: #5578ff;"></i>
+                            <h3><a class="stretched-link">Audio Upload Interface</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="features-item">
+                            <i class="bi bi-mortarboard" style="color: #e80368;"></i>
+                            <h3><a class="stretched-link">Real-time Feedback</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="features-item">
+                            <i class="bi bi-nut" style="color: #e361ff;"></i>
+                            <h3><a class="stretched-link">Progress Tracking</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="500">
+                        <div class="features-item">
+                            <i class="bi bi-shuffle" style="color: #47aeff;"></i>
+                            <h3><a class="stretched-link">Interactive Exercises</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="600">
+                        <div class="features-item">
+                            <i class="bi bi-star" style="color: #ffa76e;"></i>
+                            <h3><a class="stretched-link">Community Forum</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="700">
+                        <div class="features-item">
+                            <i class="bi bi-x-diamond" style="color: #11dbcf;"></i>
+                            <h3><a class="stretched-link">Resource Library</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="800">
+                        <div class="features-item">
+                            <i class="bi bi-chat-dots" style="color: #4233ff;"></i>
+
+                            <h3><a class="stretched-link">Live Chat Support</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="900">
+                        <div class="features-item">
+                            <i class="bi bi-command" style="color: #b2904f;"></i>
+                            <h3><a class="stretched-link">User Dashboard</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1000">
+                        <div class="features-item">
+                            <i class="bi bi-dribbble" style="color: #b20969;"></i>
+                            <h3><a class="stretched-link">Privacy and Security</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1100">
+                        <div class="features-item">
+                            <i class="bi bi-activity" style="color: #ff5828;"></i>
+                            <h3><a class="stretched-link">Genuine Reviews</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                    <div class="col-6 col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="1200">
+                        <div class="features-item">
+                            <i class="bi bi-phone" style="color: #29cc61;"></i>
+
+                            <h3><a class="stretched-link">Simple Interface</a></h3>
+                        </div>
+                    </div><!-- End Feature Item -->
+
+                </div>
+
+            </div>
+
+        </section><!-- /Features Section -->
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Reviews</h2>
+                <p>Real Feedback and Success Stories from Learners Who Have Transformed Their English Speaking Skills
+                    with Us.</p>
+            </div><!-- End Section Title -->
+
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="swiper init-swiper">
+                   
+                <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 1,
+                  "spaceBetween": 40
+                },
+                "1200": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 20
+                }
+              }
+            }
+            </script>
+                    <div class="swiper-wrapper">
+                        
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="testimonial-item">
+                                    
+                                    <img src="/static/images/abhi.jpg" class="img-fluid" style="width: 80px;"
+                                        alt="profile">
+                                    
+
+                                    <h3>Abhinav</h3>
+
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-half"></i>
+                                    </div>
+                                    <p style="word-wrap: break-word; overflow-wrap: break-word;">
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>This platform is truly ideal for achieving fluency in English. I'm saying from My personal experience.</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="testimonial-item">
+                                    
+                                    <img src="/static/images/user.png" class="img-fluid" style="width: 80px;"
+                                        alt="profile">
+                                    
+
+                                    <h3>Aadvika</h3>
+
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i
+                                            class="bi bi-star"></i>
+                                    </div>
+                                    <p style="word-wrap: break-word; overflow-wrap: break-word;">
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>I joined this platform after seeing an advertisement, and I am genuinely happy about my decision. It has helped me to secure a job.</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="testimonial-item">
+                                    
+                                    <img src="/static/images/shiva.jpg" class="img-fluid" style="width: 80px;"
+                                        alt="profile">
+                                    
+
+                                    <h3>Shiva Shankar</h3>
+
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star"></i>
+                                    </div>
+                                    <p style="word-wrap: break-word; overflow-wrap: break-word;">
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>A top-notch platform for achieving English fluency, with transparent payment structures.</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="testimonial-item">
+                                    
+                                    <img src="/static/images/akshay.jpeg" class="img-fluid" style="width: 80px;"
+                                        alt="profile">
+                                    
+
+                                    <h3>Vihaan Krishna</h3>
+
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-half"></i><i class="bi bi-star"></i><i
+                                            class="bi bi-star"></i>
+                                    </div>
+                                    <p style="word-wrap: break-word; overflow-wrap: break-word;">
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>It's a good platform, but I'm a bit disappointed that we can't receive feedback for every task.</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="testimonial-item">
+                                    
+                                    <img src="/static/images/aaro.jpg" class="img-fluid" style="width: 80px;"
+                                        alt="profile">
+                                    
+
+                                    <h3>Aariz Ahmed</h3>
+
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-half"></i>
+                                    </div>
+                                    <p style="word-wrap: break-word; overflow-wrap: break-word;">
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>The AI assistant was incredibly powerful because it helped me identify my mistakes and correct them.</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
+                        
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                </div>
+
+            </div>
+
+        </section><!-- /Testimonials Section -->
+
+
+        <!-- Faq Section -->
+        <section id="faq" class="faq section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>FAQ</h2>
+                <p>Everything You Need to Know: Common Questions and Detailed Answers</p>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+
+                <div class="row faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-5 d-flex">
+                        <i class="bi bi-question-circle"></i>
+                        <h4>What is the 40-day training program, and how does it work?</h4>
+                    </div>
+                    <div class="col-lg-7">
+                        <p>
+                            The 40-day training program is designed to improve your English speaking skills through
+                            daily tasks. Each day, you'll be assigned tasks such as reading, recording audio, writing
+                            reviews, and grammar tests. Your progress will be tracked, and you'll receive feedback from
+                            AI to help you improve.
+                        </p>
+                    </div>
+                </div><!-- End F.A.Q Item-->
+
+                <div class="row faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-lg-5 d-flex">
+                        <i class="bi bi-question-circle"></i>
+                        <h4>How are the audio recordings reviewed, and what kind of feedback will I receive?</h4>
+                    </div>
+                    <div class="col-lg-7">
+                        <p>
+                            When you upload an audio recording, it will be reviewed by an AI, which will provide
+                            feedback on your pronunciation, fluency, and grammar. The feedback will help you understand
+                            your strengths and areas for improvement.
+                        </p>
+                    </div>
+                </div><!-- End F.A.Q Item-->
+
+                <div class="row faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-lg-5 d-flex">
+                        <i class="bi bi-question-circle"></i>
+                        <h4>Can I pause or skip days in the 40-day training program?</h4>
+                    </div>
+                    <div class="col-lg-7">
+                        <p>
+                            The program is designed to be completed over 40 consecutive days to ensure steady progress.
+                            However, if you need to skip a day or take a break, you can resume where you left off. Just
+                            keep in mind that this may affect your overall progress and feedback.
+                        </p>
+                    </div>
+                </div><!-- End F.A.Q Item-->
+
+                <div class="row faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="col-lg-5 d-flex">
+                        <i class="bi bi-question-circle"></i>
+                        <h4>How can I track my progress throughout the 40-day program?</h4>
+                    </div>
+                    <div class="col-lg-7">
+                        <p>
+                            Your progress is tracked through a progress bar that shows your completion of daily tasks
+                            over the 40-day period. You can view your progress on the "Dashboard" page, where you'll see
+                            how many tasks you've completed and how much of the program you've finished.
+                        </p>
+                    </div>
+                </div><!-- End F.A.Q Item-->
+
+                <div class="row faq-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="col-lg-5 d-flex">
+                        <i class="bi bi-question-circle"></i>
+                        <h4>Is there a way to contact support if I have technical issues or questions?</h4>
+                    </div>
+                    <div class="col-lg-7">
+                        <p>
+                            Yes, if you have any technical issues or questions, you can contact our support team through
+                            the "Contact Us" page. Provide as much detail as possible about your issue, and our team
+                            will assist you in resolving it.
+                        </p>
+                    </div>
+                </div><!-- End F.A.Q Item-->
+
+            </div>
+
+        </section><!-- /Faq Section -->
+
+        <!-- About Section -->
+        <section id="about" class="about section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>About Us</h2>
+                <p>Learn More About Us: Our Commitment to Improving Your English Proficiency</p>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+
+                <div class="row justify-content-center gy-5">
+                    <div class="col-11">
+
+                        <div class="content col-12 d-flex flex-column" data-aos="fade-up" data-aos-delay="100">
+                            <h3>Empowering Your English Journey</h3>
+                            <p>
+                                Welcome to FluentsySpeak, where our mission is to help you master English speaking skills
+                                through engaging and personalized practice. We understand that learning a new language
+                                can be challenging, especially when it comes to speaking confidently. That's why we've
+                                designed a unique 40-day training program to guide you through daily tasks, including
+                                reading exercises, audio recordings, and grammar tests.
+                            </p>
+
+                        </div>
+
+                        <div class="col-12" data-aos="fade-up" data-aos-delay="200">
+                            <div class="row gy-4">
+
+                                <div class="col-md-6 icon-box position-relative">
+                                    <i class="bi bi-person-walking"></i>
+                                    <h4><a class="stretched-link">Our Approach</a></h4>
+                                    <p>We combine the latest in language learning technology with a user-friendly
+                                        interface to create a learning experience that is both effective and motivating.
+                                    </p>
+                                </div><!-- Icon-Box -->
+
+                                <div class="col-md-6 icon-box position-relative">
+                                    <i class="bi bi-gem"></i>
+                                    <h4><a class="stretched-link">Our Vision</a></h4>
+                                    <p>Our vision is to provide an innovative and supportive platform that makes
+                                        learning English both effective and enjoyable.
+                                    </p>
+                                </div><!-- Icon-Box -->
+
+                                <div class="col-md-6 icon-box position-relative">
+                                    <i class="bi bi-person-add"></i>
+                                    <h4><a class="stretched-link">Join Us</a></h4>
+                                    <p>Whether you're looking to improve your English for personal growth, academic
+                                        purposes, or professional development, FluentsySpeak is here to support you every
+                                        step of the way.</p>
+                                </div><!-- Icon-Box -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section><!-- /About Section -->
+
+        <footer id="footer" class="footer">
+
+            <div class="container">
+                <div class="copyright text-center ">
+                    <p>© <span id="currentYear"></span> <span>Copyright</span> <strong class="px-1 sitename">FluentsySpeak</strong> <span>All Rights
+                            Reserved</span></p>
+                </div>
+                <div class="mt-3 d-flex justify-content-center">
+
+                    <a href="{% url 'privacypolicy' %}">privacy policy</a> &nbsp;|&nbsp;
+                    <a href="{% url 'termsofservice' %}">terms of service</a> &nbsp;|&nbsp;
+                    <a href="{% url 'contactUs' %}">contact us</a>
+
+                </div>
+
+            </div>
+            <script>
+                // JavaScript to set the current year in the footer
+                document.getElementById('currentYear').textContent = new Date().getFullYear();
+            </script>
+        </footer>
+    </main>
+
+
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/validate.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script src="{% static 'js/glightbox.min.js' %}"></script>
+    <script src="{% static 'js/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+
+    <!-- Main JS File -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

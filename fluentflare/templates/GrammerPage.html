@@ -1,0 +1,168 @@
+{% extends "blank_layout.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero" class="hero section" style="padding-top: 0px; padding-bottom: 0px;">
+    
+
+    <div class="container">
+        <div class="row gy-4 justify-content-center">
+            
+            <div class="col-10">
+                
+                <h2><b>Start With Grammer, Watch This Video:</b></h2>
+
+                <div class="pt-0">
+                    {% if language == "Malayalam" %}
+                        <iframe class="w-100" width="560" height="370" 
+                            src="https://www.youtube.com/embed/z-XY5M2fAro?si=V08-qk7tFM4R0CFw&amp;start=164" 
+                            title="Malayalam Grammar Video" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    {% elif language == "Hindi" %}
+                    <iframe class="w-100" width="560" height="370" 
+                        src="https://www.youtube.com/embed/LvEfjVTxe2s?si=_C9jQnKJe29qybTJ&amp;start=164" 
+                        title="Malayalam Grammar Video" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+
+                    {% elif language == "Tamil" %}
+                    <iframe class="w-100" width="560" height="370" 
+                        src="https://www.youtube.com/embed/2dPViUTUFOk?si=YOdfDNzW599oBUB9&amp;start=95" 
+                        title="Malayalam Grammar Video" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+
+                    {% else %}
+                        <iframe class="w-100" width="560" height="370" 
+                            src="https://www.youtube.com/embed/Ljjiw9mC_Cg?si=lhOFfIvwGkUyHsO_&amp;start=164" 
+                            title="English Grammar Video" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    {% endif %}
+                </div>
+                <h6 class="d-flex justify-content-center"><b>You Can Skip The Grammer, If You Already Know.</b></h6>
+                
+                <div class="d-grid justify-content-center mt-4">
+                    <a href="{% url 'FirstTask' %}" class="btn-get-started">Go To Course🤩</a>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+</section><!-- /Hero Section -->
+
+<section id="hero" class="hero section" style="padding-top: 0px; padding-bottom: 0px;">
+    
+
+    <div class="container">
+        <div class="row gy-4 justify-content-center mt-md-2">
+            
+            <div class="col-10">
+                
+                <h3><b><i>Reading books are Important. So, Here are some suggestions:</i></b></h3>
+
+                <ul>
+                    <li class="mb-2">For Beginners:
+                        <ol>
+                            <li>"Charlotte's Web" by E.B. White</li>
+                            <li>"The Very Hungry Caterpillar" by Eric Carle</li>
+                            <li>"Green Eggs and Ham" by Dr. Seuss</li>
+                        </ol>
+                    </li>
+                    <li class="mb-2">For Intermediate Readers:
+                        <ol>
+                            <li>"Harry Potter" series by J.K. Rowling</li>
+                            <li>"Matilda" by Roald Dahl</li>
+                            <li>"Anne of Green Gables" by L.M. Montgomery</li>
+                        </ol>
+                    </li>
+                    <li>For Advanced Readers:
+                        <ol>
+                            <li>"Pride and Prejudice" by Jane Austen</li>
+                            <li>"To Kill a Mockingbird" by Harper Lee</li>
+                            <li>"The Great Gatsby" by F. Scott Fitzgerald</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="row gy-4 justify-content-center mt-3">
+            
+            <div class="col-10">
+                
+                <h3><b><i>Watch Movies Daily, Here are some suggestions:</i></b></h3>
+                <p class="fs-6" style="color: #52a7e0;">(Watch at least half of the movie per day.)</p>
+
+                <ul>
+                    <li class="mb-2">For Beginners:
+                        <ol>
+                            <li>Toy Story (1995)</li>
+                            <li>Finding Nemo (2003)</li>
+                            <li>The Pursuit of Happyness (2006)</li>
+                        </ol>
+                    </li>
+                    <li class="mb-2">For Intermediate Readers:
+                        <ol>
+                            <li>Forrest Gump (1994)</li>
+                            <li>The Devil Wears Prada (2006)</li>
+                            <li>Good Will Hunting (1997)</li>
+                        </ol>
+                    </li>
+                    <li>For Advanced Readers:
+                        <ol>
+                            <li>Inception (2010)</li>
+                            <li>The Social Network (2010)</li>
+                            <li>A Beautiful Mind (2001)</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="row gy-4 justify-content-center mt-3">
+            
+            <div class="col-10">
+                
+                <h3><b><i>Listen To Podcaste's, Here are some suggestions:</i></b></h3>
+
+                <ul>
+                    <li class="mb-2">For Beginners:
+                        <ol>
+                            <li>ESL Pod</li>
+                            <li>The English We Speak</li>
+                            <li>All Ears English</li>
+                        </ol>
+                    </li>
+                    <li class="mb-2">For Intermediate Readers:
+                        <ol>
+                            <li>Luke’s English Podcast</li>
+                            <li>Voice of America</li>
+                            <li>The Daily</li>
+                        </ol>
+                    </li>
+                    <li>For Advanced Readers:
+                        <ol>
+                            <li>TED Talks Daily</li>
+                            <li>The Economist Podcasts</li>
+                            <li>This American Life</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "blank_layout.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero" class="hero section">
+
+    <div class="container">
+        <div class="row gy-4 justify-content-center">
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for d in tasks %}
+                    {% if d.unlocked %}
+                        <div class="col col-6">
+                            
+                            <div class="card h-100">
+                                <a href="{% url 'taskpage' d.id %}?page={{ page }}">
+                                <img src="/static/media/{{d.imagefortask}}" class="card-img-top" alt="task">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Task No. {{d.title}}</h5>
+                                    <p class="card-text">{{d.Quotefortask}}</p>
+                                </div>
+                                <div class="card-footer d-grid justify-content-center">
+                                    
+                                    <a href="{% url 'taskpage' d.id %}?page={{ page }}" class="btn" style="font-size: small; background-color: #52a7e0; color: white;">Start Task</a>
+                                    
+                                </div>
+                            </div>
+                            
+                            
+                        
+                            
+                        </div>
+                    {% else %}
+                        <div class="col col-6">
+                            
+                            <div class="card h-100">
+                                <img src="/static/images/lock.png" class="card-img-top h-100" alt="...">
+                                
+                                <div class="card-footer d-grid justify-content-center">
+                                    
+                                    
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+            <div class="mt-5">
+                <nav aria-label="Page navigation example" style="border: none;">
+                    <ul class="pagination justify-content-center" style="border: none;">
+
+                        <li class="page-item " style="border: 1px solid white;">
+                            {% if tasks.has_previous %}
+                            <a class="page-link" style="color: #52a7e0;" href="?page={{ tasks.previous_page_number }}"
+                                aria-label="Next">
+                                <span style="border: none;">&laquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+
+
+                        {% for i in tasks.paginator.page_range %}
+                        <li class="page-item {% if tasks.number == i %}active{% endif %}"
+                            style="border: 1px solid white;">
+                            <a class="page-link" style="color: #52a7e0; background: none;" href="?page={{i}}" style="border: none;">
+                                <span style="border: none;">{{i}}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+
+                        <li class="page-item " style="border: 1px solid white;">
+                            {% if tasks.has_next %}
+                            <a class="page-link" style="color: #52a7e0;" href="?page={{ tasks.next_page_number }}"
+                                aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            {% endif %}
+
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+
+</section><!-- /Hero Section -->
+
+{% endblock %}

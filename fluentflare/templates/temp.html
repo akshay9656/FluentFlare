@@ -1,0 +1,17 @@
+{% extends "blank_layout.html" %}
+{% load static %}
+{% block content %}
+
+{% endblock %}
+
+
+
+#52a7e0
+
+<form method="POST" id="requestPaymentForm">
+    {% csrf_token %}
+    <input type="hidden" name="reqamount" value="{{ current_amount }}">
+    <button class="btn" type="submit" id="requestPaymentButton" name="requestpayment" style="width: 100%; background-color: #52a7e0; border: none; border-radius: 10px; color: white; margin-top: 10px;">
+        <i class="bi bi-wallet-fill"></i> Request Payout
+    </button>
+</form>
